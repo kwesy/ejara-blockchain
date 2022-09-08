@@ -8,7 +8,7 @@ export class TransactionController {
   @Get(':block_number')
   get(@Param() p): any {
     if (p.block_number == 'latest') {
-      console.log(p);
+      // console.log(p);
       return this.transactionService.getBlockTransactionMetrices(0);
     } else
       return this.transactionService.getBlockTransactionMetrices(

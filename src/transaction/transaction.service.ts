@@ -30,20 +30,38 @@ export class TransactionService {
     return await res;
   }
 
+  findMedian(inputArray) {
+    const sortedArr = inputArray.slice().sort((a, b) => a - b);
+    const inputLength = inputArray.length;
+    const middleIndex = Math.floor(inputLength / 2);
+    const oddLength = inputLength % 2 != 0;
+    let median;
+    if (oddLength) {
+      // if array length is odd -> return element at middleIndex
+      median = sortedArr[middleIndex];
+    } else {
+      median = (sortedArr[middleIndex] + sortedArr[middleIndex - 1]) / 2;
+    }
+    return median;
+  }
+
   median(v: number[]): number {
-    console.log(v);
+    // console.log(v);
     if (v.length == 0) {
-      return null;
+      return 0;
     }
 
     const sorted = v.sort((a, b) => a - b);
     const half = Math.floor(sorted.length) / 2;
 
-    if (v.length % 2) {
-      return v[half];
+    if (sorted.length % 2) {
+      console.log(sorted.length % 2);
+      return sorted[half];
     }
 
-    return (v[half - 1] + v[half]) / 2.0;
+    console.log('Here');
+
+    return (sorted[half - 1] + sorted[half]) / 2.0;
   }
 
   async getBlockTransactionMetrices(block_number: number): Promise<any> {
@@ -70,9 +88,10 @@ export class TransactionService {
     // console.log(min);
     const average =
       transac_fees.reduce((a, b) => a + b, 0) / transac_fees.length;
-    const median = this.median(transac_fees);
+    const median = this.findMedian(transac_fees);
+    console.log(median);
 
-    return { min, max, average, median: median };
+    return { min, max, average, median };
   }
 
   async cacheData() {
