@@ -17,5 +17,5 @@ model Block {
 
 model BlockHash {
   id Int @id @default(autoincrement())
-  hash String
+  hash Json
 }

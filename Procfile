@@ -1,1 +1,1 @@
-web: npm i axios -g && npm run start:prod
+web: echo "heree" && npm i axios -g && npm run start:prod
