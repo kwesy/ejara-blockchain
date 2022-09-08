@@ -32,6 +32,47 @@
 $ npm install
 ```
 
+## tesing
+
+[url](https://ejarablockchain.herokuapp.com)
+
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/:block_number)
+This end point accept GET request and return a min, max, average and median of the fees
+a particular Tezos Block of kind transaction
+Replace <:block_number>
+
+returns
+```
+{
+    "min": 2,
+    "max": 3239,
+    "average": 1137,
+    "median": 1135
+}
+```
+eg:
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/latest)
+
+```
+{
+    "min": 0,
+    "max": 2735,
+    "average": 1115.6363636363637,
+    "median": 1174
+}
+```
+
+###or
+
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/2)
+
+{
+    "min": 0,
+    "max": 2840,
+    "average": 1059.5652173913043,
+    "median": 871
+}
+
 ## Running the app
 
 ```bash
@@ -43,19 +84,6 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
 
 ## Support
