@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { AxiosResponse } from 'Axios';
+// import { AxiosResponse } from 'Axios';
 import { lastValueFrom, map, Observable } from 'rxjs';
 import { BlockHash, PrismaClient } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -12,7 +12,7 @@ export class TransactionService {
     private readonly prisma: PrismaService,
   ) {}
 
-  async getBlocks(): Promise<Observable<AxiosResponse<JSON>>> {
+  async getBlocks(): Promise<Observable<JSON>> {
     const res = lastValueFrom(
       this.httpService
         .get('https://tez.nodes.ejaraapis.xyz/chains/main/blocks/')
