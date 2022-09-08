@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  ejara-dev-db:
+    image: postgres
+    ports:
+      # - 27017:27017
+      - 5435:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass123
+      POSTGRES_DB: ejara
+    networks:
+      - ejaraNet
+networks:
+  ejaraNet:
+
+# Run
+# docker compose up -d ejara-dev-db
