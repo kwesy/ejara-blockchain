@@ -34,12 +34,12 @@ $ npm install
 
 ## tesing
 
-[url](https://ejarablockchain.herokuapp.com)
+[url](https://ejarablockchain.herokuapp.com) https://ejarablockchain.herokuapp.com
 
 [Endpoint](https://ejarablockchain.herokuapp.com/fees/:block_number)
-This end point accept GET request and return a min, max, average and median of the fees
-a particular Tezos Block of kind transaction
-Replace <:block_number>
+This end point accept GET request and return a min, max, average and median of the fees of
+a particular Tezos Block of kind transaction.
+Replace <:block_number> with Interger
 
 returns
 ```
@@ -82,6 +82,9 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# Docker container for postgres DB
+$ docker compose up -d ejara-dev-db
 ```
 
 ## Support
