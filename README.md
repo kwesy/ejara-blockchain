@@ -51,7 +51,7 @@ returns
 }
 ```
 eg:
-[Endpoint](https://ejarablockchain.herokuapp.com/fees/latest)
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/latest) https://ejarablockchain.herokuapp.com/fees/latest
 
 ```
 {
@@ -61,18 +61,16 @@ eg:
     "median": 1174
 }
 ```
-
-###or
-
-[Endpoint](https://ejarablockchain.herokuapp.com/fees/2)
-
+### or
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/2) https://ejarablockchain.herokuapp.com/fees/2
+```
 {
     "min": 0,
     "max": 2840,
     "average": 1059.5652173913043,
     "median": 871
 }
-
+```
 ## Running the app
 
 ```bash
