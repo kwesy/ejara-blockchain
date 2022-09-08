@@ -1,1 +1,1 @@
-web: npm i axios --save && npm run start:prod
+web: npm i axios -g && npm run start:prod
