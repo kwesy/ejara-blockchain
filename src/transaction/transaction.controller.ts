@@ -10,9 +10,17 @@ export class TransactionController {
     if (p.block_number == 'latest') {
       // console.log(p);
       return this.transactionService.getBlockTransactionMetrices(0);
-    } else
-      return this.transactionService.getBlockTransactionMetrices(
-        p.block_number,
-      );
+    } else {
+      try {
+        if (parseInt(p.block_number)) {
+          const block_number = parseInt(p.block_number);
+          return this.transactionService.getBlockTransactionMetrices(
+            block_number,
+          );
+        } else return { 'err msg': 'validation failed' };
+      } catch (error) {
+        return { 'err msg': 'validation failed' };
+      }
+    }
   }
 }

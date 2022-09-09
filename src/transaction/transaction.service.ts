@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 // import { AxiosResponse } from 'Axios';
-import { lastValueFrom, map, Observable } from 'rxjs';
+import { lastValueFrom, map } from 'rxjs';
 import { BlockHash, PrismaClient } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -12,7 +12,7 @@ export class TransactionService {
     private readonly prisma: PrismaService,
   ) {}
 
-  async getBlocks(): Promise<Observable<JSON>> {
+  async getBlocks(): Promise<any> {
     const res = lastValueFrom(
       this.httpService
         .get('https://tez.nodes.ejaraapis.xyz/chains/main/blocks/')
@@ -67,6 +67,7 @@ export class TransactionService {
   async getBlockTransactionMetrices(block_number: number): Promise<any> {
     const blockHashs = await this.getBlocks();
     // console.log(blockHashs);
+    console.log(block_number);
     const block = await this.getBlockByHash(blockHashs[block_number][0]);
     // console.log(block);
     const transactions = [];
@@ -95,28 +96,10 @@ export class TransactionService {
   }
 
   async cacheData() {
-    // const hash = await this.getBlocks();
+    const hash = await this.getBlocks();
     this.prisma.blockHash.create({
       data: {
-        hash: [
-          ['BLgbHqFJF3oUyU8vbL8UaFN9zU8N8uBdi5HfHyzNkCFZkpKGgGG'],
-          ['BKtVqrLoXG9uTS5mBjyy1eEh8xKSBkkrN7keASE3JwEyT8RyMjJ'],
-          ['BKwV9LPAM5kp6ht12kt2vLfEo79h29igiwGmABdUNYGtVBRNNyc'],
-          ['BL1sqw2b26azLMYayAjJa1EUDXXUvbGjBNVMBcXDsV5nrsSTjFH'],
-          ['BL2oH9eauAezMKnqMtiDNh78XLACRRftuNUzDcbSB4s3RpSCm3q'],
-          ['BLLNPCBcxxLiTiuyKkDPbAgBANeiM4Dpf8YZVinh3Nd4xvL4tVa'],
-          ['BMYiiMaLtrEafqdGU9Y5ypkWxqSLnHYf4WBEYNDd2WDccNJzyg3'],
-          ['BM72nKrP8pDZjQq27abuocpBXK8vCK76e6JSrpncLguft9YJ58q'],
-          ['BMZsrqFfdzJeRUDVCTKuHanQ6iub5ZMUW5751AhMUvfxzAEBEmU'],
-          ['BLhoUJtLmAok6aMcTcetPXr1BHYT5LgKwFPyvTWvdjezYcH1T2X'],
-          ['BLPrY2fsMh8X5W2XYXrWcFCNvDxVpawvp4NqmiJoPm8eerApLtQ'],
-          ['BLytRtfeucnFFsLVnm5iYXMvCkcpJWtVr9z38p2FHGEHYZsbYuE'],
-          ['BKqHk24Tqb4sgiAAh5ZZW3ADnWYpxbDTY68zLve5ykZmNPWqw3g'],
-          ['BLPHyFDKagwK3uqtp3qNp8qh1SZkuc8AoWSv4rXkTvie4LsPiRq'],
-          ['BM3Bm1nYZytL3agQCtiemWCc7dwCsgrK14gW36jcy58xihmm9s7'],
-          ['BLawDheoX6uQuwfXCyTn216ohkN716AZncE2HCQdDtxQcZV5Rfq'],
-          ['BM4SoEqYwPoX6XxGGP7ukt9RN1cKj5t6DoQEJnjrsug3NjwWZba'],
-        ],
+        hash: hash,
       },
     });
   }
