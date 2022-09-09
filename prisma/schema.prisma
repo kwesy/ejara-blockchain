@@ -12,10 +12,14 @@ datasource db {
 
 model Block {
   id Int @id @default(autoincrement())
-  block Json
+  hash String @unique
+  min Float
+  max Float
+  average Float
+  median Float
 }
 
 model BlockHash { 
   id Int @id @default(autoincrement())
-  hash Json
+  hash String
 }

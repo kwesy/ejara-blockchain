@@ -4,6 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { lastValueFrom, map } from 'rxjs';
 import { BlockHash, PrismaClient } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import internal from 'stream';
 
 @Injectable()
 export class TransactionService {
@@ -48,7 +49,25 @@ export class TransactionService {
   async getBlockTransactionMetrices(block_number: number): Promise<any> {
     const blockHashs = await this.getBlocks();
     console.log(block_number);
-    const block = await this.getBlockByHash(blockHashs[block_number][0]);
+    const hash: string = blockHashs[block_number][0];
+    console.log(hash);
+
+    const cachedBlock = await this.prisma.block.findUnique({
+      where: {
+        hash: hash,
+      },
+    });
+    if (cachedBlock) {
+      console.log('heere');
+      return {
+        min: cachedBlock.min,
+        max: cachedBlock.max,
+        average: cachedBlock.average,
+        median: cachedBlock.median,
+      };
+    }
+
+    const block = await this.getBlockByHash(hash);
     // console.log(block);
     const transactions = [];
     block.operations.forEach((e) => {
@@ -72,14 +91,25 @@ export class TransactionService {
     const median = this.findMedian(transac_fees);
     console.log(median);
 
+    const r = await this.cacheData(hash, min, max, average, median);
+    console.log(r);
     return { min, max, average, median };
   }
 
-  async cacheData() {
-    const hash = await this.getBlocks();
-    this.prisma.blockHash.create({
+  async cacheData(
+    hash: string,
+    min: number,
+    max: number,
+    average: number,
+    median: number,
+  ) {
+    return await this.prisma.block.create({
       data: {
-        hash: hash,
+        hash,
+        min,
+        max,
+        average,
+        median,
       },
     });
   }
