@@ -24,7 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is simple Nestjs api to compute the average, median, min and max fees for all the
+transactions in a Tezos block.
 
 ## Installation
 
@@ -34,12 +35,12 @@ $ npm install
 
 ## tesing
 
-[url](https://ejarablockchain.herokuapp.com) https://ejarablockchain.herokuapp.com
+[url](https://ejarablockchain.herokuapp.com) - https://ejarablockchain.herokuapp.com
 
-[Endpoint](https://ejarablockchain.herokuapp.com/fees/:block_number)
+Endpoint -> https://ejarablockchain.herokuapp.com/fees/:block_number
 This end point accept GET request and return a min, max, average and median of the fees of
 a particular Tezos Block of kind transaction.
-Replace <:block_number> with Interger
+Replace <:block_number> with an Interger
 
 returns
 ```
@@ -51,7 +52,7 @@ returns
 }
 ```
 eg:
-[Endpoint](https://ejarablockchain.herokuapp.com/fees/latest) https://ejarablockchain.herokuapp.com/fees/latest
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/latest) - https://ejarablockchain.herokuapp.com/fees/latest
 
 ```
 {
@@ -62,7 +63,7 @@ eg:
 }
 ```
 ### or
-[Endpoint](https://ejarablockchain.herokuapp.com/fees/2) https://ejarablockchain.herokuapp.com/fees/2
+[Endpoint](https://ejarablockchain.herokuapp.com/fees/2) - https://ejarablockchain.herokuapp.com/fees/2
 ```
 {
     "min": 0,
@@ -76,6 +77,12 @@ eg:
 ```bash
 # development
 $ npm run start
+
+# init prisma
+$ npx prisma init
+
+# migrate
+$ npx prisma migrate dev
 
 # watch mode
 $ npm run start:dev
