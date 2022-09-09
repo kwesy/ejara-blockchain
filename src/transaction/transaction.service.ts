@@ -45,25 +45,6 @@ export class TransactionService {
     return median;
   }
 
-  median(v: number[]): number {
-    // console.log(v);
-    if (v.length == 0) {
-      return 0;
-    }
-
-    const sorted = v.sort((a, b) => a - b);
-    const half = Math.floor(sorted.length) / 2;
-
-    if (sorted.length % 2) {
-      console.log(sorted.length % 2);
-      return sorted[half];
-    }
-
-    console.log('Here');
-
-    return (sorted[half - 1] + sorted[half]) / 2.0;
-  }
-
   async getBlockTransactionMetrices(block_number: number): Promise<any> {
     const blockHashs = await this.getBlocks();
     // console.log(blockHashs);
