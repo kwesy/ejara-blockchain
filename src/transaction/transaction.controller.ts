@@ -1,12 +1,16 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 
-@Controller('fees')
+@Controller()
 export class TransactionController {
   constructor(private transactionService: TransactionService) {}
+  @Get('/')
+  home() {
+    return 'Welcome to Tezos';
+  }
 
-  @Get(':block_number')
-  get(@Param() p): any {
+  @Get('fees/:block_number')
+  getMetrices(@Param() p): any {
     if (p.block_number == 'latest') {
       // console.log(p);
       return this.transactionService.getBlockTransactionMetrices(0);
