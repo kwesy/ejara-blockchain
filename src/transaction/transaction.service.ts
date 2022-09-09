@@ -83,4 +83,9 @@ export class TransactionService {
       },
     });
   }
+
+  async dataHashFromDB() {
+    const hash = await this.prisma.blockHash.findMany();
+    return hash;
+  }
 }
