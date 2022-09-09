@@ -47,7 +47,6 @@ export class TransactionService {
 
   async getBlockTransactionMetrices(block_number: number): Promise<any> {
     const blockHashs = await this.getBlocks();
-    // console.log(blockHashs);
     console.log(block_number);
     const block = await this.getBlockByHash(blockHashs[block_number][0]);
     // console.log(block);
