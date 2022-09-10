@@ -40,7 +40,7 @@ $ npm install
 Endpoint -> https://ejarablockchain.herokuapp.com/fees/:block_number
 This end point accept GET request and return a min, max, average and median of the fees of
 a particular Tezos Block of kind transaction.
-Replace <:block_number> with an Interger or latest to get the most recently added block
+Replace <:block_number> with an Interger or 'latest' to get the most recently added block
 
 returns
 ```
